@@ -1,0 +1,36 @@
+[package]
+name = "host"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+methods = { path = "../methods" }
+risc0-zkvm = { version = "1.2.5" }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+core = { path = "../core" }
+
+# Crypto Dependencies :
+ark-poly = { version = "0.5.0", default-features = false }
+ark-ec = { version = "0.5.0", default-features = false }
+ark-std = { version = "0.5.0", default-features = false, features = [
+    "print-trace",
+    "std",
+] }
+ark-bls12-381 = { version = "0.5.0", default-features = false, features = [
+    "curve",
+] }
+rand = { version = "0.8", features = ["std"] }
+ark-serialize = { version = "0.5.0", default-features = false, features = [
+    "derive",
+] }
+
+# Multi Encrypt Dependency :
+batch-threshold = { git = "https://github.com/ocdbytes/batched-threshold-pp", branch = "main" }
+
+[features]
+cuda = ["risc0-zkvm/cuda"]
+default = []
+prove = ["risc0-zkvm/prove"]
+
+[profile.dev]
+opt-level = 3
