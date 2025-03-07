@@ -67,6 +67,5 @@ fn main() {
     let receipt = prove_info.receipt;
     let output: u32 = receipt.journal.decode().unwrap();
     println!(">>> prover output: {}", output);
-
     receipt.verify(BATCH_ENCRYPT_CIRCUIT_ID).unwrap();
 }
